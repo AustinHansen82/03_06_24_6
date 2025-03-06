@@ -46,8 +46,8 @@ void Fungi::Find_Hyphae_Tips2()
     tips_Coord.resize(2) ;
     if (Bacteria_inLiquid == 1)
     {
-        tips_Coord[0].push_back(500.0) ;
-        tips_Coord[1].push_back(500.0) ;
+        tips_Coord[0].push_back(4000.0) ;
+        tips_Coord[1].push_back(4000.0) ;
     }
     else
     {

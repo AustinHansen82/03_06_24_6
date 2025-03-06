@@ -212,8 +212,8 @@ void TissueGrid::Create_Experimental_Gradient()
     //std::ifstream file("/Users/austinhansen/Documents/Research/Bacterial Migration/Pseudomonas_Motility_SCE_Model/external_concentrations_t=36032.00_newtrans2_Penic_Everywhere_4000Grid2.txt");
     //std::ifstream file("/Users/austinhansen/Documents/Research/Bacterial Migration/Pseudomonas_Motility_SCE_Model/external_concentrations_t=36032.00_newtrans2_Penic_Tips.txt");
     //std::ifstream file("/Users/austinhansen/Documents/Research/Bacterial Migration/Pseudomonas_Motility_SCE_Model/external_concentrations_t=36032.00_newtrans2_Penic_Tips_4000Grid2.txt");
-    std::ifstream file("/Users/austinhansen/Documents/Research/Bacterial Migration/Pseudomonas_Motility_SCE_Model/Diffusion_Point_Source_2000Micron.txt");
-    //std::ifstream file("/rhome/ahans016/bigdata/Bacterial_Migration/Pseudomonas_Motility_SCE_Model/external_concentrations_t=36032.00_newtrans2_Penic_Everywhere.txt");
+    //std::ifstream file("/Users/austinhansen/Documents/Research/Bacterial Migration/Pseudomonas_Motility_SCE_Model/Diffusion_Point_Source_2000Micron.txt");
+    std::ifstream file("/rhome/ahans016/bigdata/Bacterial_Migration/Pseudomonas_Motility_SCE_Model/external_concentrations_t=36032.00_newtrans2_Penic_Everywhere.txt");
     //std::ifstream file("/rhome/ahans016/bigdata/Bacterial_Migration/Pseudomonas_Motility_SCE_Model/external_concentrations_t=36032.00_newtrans2_Penic_Everywhere_4000Grid2.txt");
     //std::ifstream file("/rhome/ahans016/bigdata/Bacterial_Migration/Pseudomonas_Motility_SCE_Model/external_concentrations_t=36032.00_newtrans2_Penic_Tips.txt");
     //std::ifstream file("/rhome/ahans016/bigdata/Bacterial_Migration/Pseudomonas_Motility_SCE_Model/external_concentrations_t=36032.00_newtrans2_Penic_Tips_4000Grid2.txt");
@@ -299,6 +299,37 @@ void TissueGrid::RoundToZero()
             }
         }
     }
+    // Code to Save Chemoattractant Profile for Further Use
+    /*
+    std::string filename = "Chemo_Profile.csv";  // Added .csv extension for clarity
+    std::ofstream outFile(filename);
+        
+        if (!outFile.is_open()) {
+            std::cerr << "Error: Unable to open file " << filename << " for writing." << std::endl;
+            return;
+        }
+
+        // Set precision for floating-point output
+        outFile << std::setprecision(15);
+
+        for (int i = 0; i < numberGridsY; i++)
+        {
+            for (int j = 0; j < numberGridsX; j++)
+            {
+                outFile << grids.at(j).at(i).value;
+                
+                // Add a comma separator if it's not the last element in the row
+                if (j < numberGridsX - 1) {
+                    outFile << ",";
+                }
+            }
+            outFile << "\n";  // New line after each row
+        }
+
+        outFile.close();
+
+        std::cout << "Grid data saved to " << filename << std::endl;
+    */
 }
 
 void TissueGrid::UpdateTGrid_FromConfigFile()

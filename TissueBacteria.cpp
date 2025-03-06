@@ -3,7 +3,7 @@
 //  Myxobacteria
 //
 //  Created by Alireza Ramezani on 10/8/20.
-//  Copyright © 2020 Alireza Ramezani. All rights reserved.
+//  Copyright © 2020 Alireza Ramezani and Austin Hansen. All rights reserved.
 //
 
 #include "TissueBacteria.hpp"
@@ -268,14 +268,14 @@ void TissueBacteria::CircularInitialization ()
         b = b/norm ;
         */
         
-       
+       /*
         //Perpendicular
         a = -raduis * sin( static_cast<double>(i* deltaTetta) ) ;
         b = raduis * cos( static_cast<double>(i* deltaTetta) ) ;
         double norm = sqrt(a*a+b*b) ;
         a = a/norm ;
         b = b/norm ;
-       
+       */
    /*
         // Print a and b when i is 12
         if (i == 12)
@@ -288,14 +288,14 @@ void TissueBacteria::CircularInitialization ()
 
         }
 */
-        /*
+        
         //Random
         a = gasdev(&idum) ;
         b =gasdev(&idum) ;
         double norm = sqrt(a*a+b*b) ;
         a = a/norm ;
         b = b/norm ;
-        */
+        
         
         for (int n=1; n<=(nnode-1)/2; n++)
         {
@@ -346,7 +346,7 @@ void TissueBacteria::SwarmingInitialization ()
 //-----------------------------------------------------------------------------------------------------
 void TissueBacteria::CenterInitialization()
 {
-    double raduis = 0.2 * sqrt(domainx * domainx  )/2.0 ;
+    double raduis = 0.05 * sqrt(domainx * domainx  )/2.0 ;
     double cntrX = domainx/2.0 ;
     double cntrY = domainy/2.0 ;
     
@@ -1133,7 +1133,6 @@ void TissueBacteria:: Cal_MotorForce()
                     //Following Slime or hyphae
                     fs = Bacterial_HighwayFollowing(i, 2.0 * bacteriaLength) ;        // length/2
                 }
-                cout<<"bhf_FX is "<<bacteria[i].bhf_Fx<<endl ;
                 
                 bacteria[i].nodes[j].fMotorx =  (tmpFmotor - fs ) * (bacteria[i].nodes[j].x - bacteria[i].nodes[j+1].x)/ Cal_NodeToNodeDistance(i,j,i,j+1) ;                          // force to the direction of head
                 
@@ -1413,10 +1412,10 @@ void TissueBacteria:: Reverse_IndividualBacteriaa (int i)
         int Random_Multiplier = unif_int_distribution(multiplier_rng);
         int Random_Multiplier_Value = Random_Multiplier == 0 ? -1 : 1;
         //bacteria[i].turnAngle =(2.0*(rand() / (RAND_MAX + 1.0))-1.0 ) *  bacteria[i].maxTurnAngle ;    //Reversals with a uniformly chosen angle in a small range
-        bacteria[i].turnAngle = 0; //180 degree Reversals
+        //bacteria[i].turnAngle = 0; //180 degree Reversals
         
         //WriteReversalForce(i);
-        //bacteria[i].turnAngle = bacteria[i].turnAngle * Random_Multiplier_Value;
+        bacteria[i].turnAngle = bacteria[i].turnAngle * Random_Multiplier_Value;
         //WriteReversalForce2(i);
     }
     else
@@ -1484,7 +1483,8 @@ void TissueBacteria:: Check_Perform_AllReversing_andWrapping()
                     //bacteria[i].maxRunDuration = bacteria[i].LogNormalMaxRunDuration(wrapDuration_distribution,wrapDuration_seed, lognormal_wrap_a, run_calibrated, 1.0/bacteria[i].wrapRate ) ;
                   //  bacteria[i].wrapAngle = (2.0*(rand() / (RAND_MAX + 1.0))-1.0 ) * bacteria[i].maxWrapAngle ;
                   //  bacteria[i].wrapAngle = (2.0*(rand() / (RAND_MAX + 1.0))-1.0 ) * bacteria[i].maxTurnAngle ; // Used for Wrap Angle Calibration
-                    bacteria[i].wrapAngle = 180 - (51.08*exp(-1.439*bacteria[i].maxRunDuration)+87.02);
+                    //bacteria[i].wrapAngle = 180 - (51.08*exp(-1.439*bacteria[i].maxRunDuration)+87.02);
+                    bacteria[i].wrapAngle = bacteria[i].maxWrapAngle;
                     bacteria[i].wrapAngle = bacteria[i].wrapAngle/(398.67*bacteria[i].maxRunDuration);
                     //bacteria[i].wrapAngle = wrapAngle_distribution(wrapAngle_seed);
                     if ( rand() / (RAND_MAX + 1.0) < 0.5)
@@ -1553,7 +1553,8 @@ void TissueBacteria:: Check_Perform_AllReversing_andWrapping()
                     //bacteria[i].maxRunDuration = bacteria[i].LogNormalMaxRunDuration(wrapDuration_distribution,wrapDuration_seed, lognormal_wrap_a, run_calibrated, 1.0/bacteria[i].wrapRate) ;
                   //  bacteria[i].wrapAngle = (2.0*(rand() / (RAND_MAX + 1.0))-1.0 ) * bacteria[i].maxWrapAngle ;
                   //  bacteria[i].wrapAngle = (2.0*(rand() / (RAND_MAX + 1.0))-1.0 ) * bacteria[i].maxTurnAngle ; // Used for Wrap Angle Calibration
-                    bacteria[i].wrapAngle = 180 - (51.08*exp(-1.439*bacteria[i].maxRunDuration)+87.02);
+                    //bacteria[i].wrapAngle = 180 - (51.08*exp(-1.439*bacteria[i].maxRunDuration)+87.02);
+                    bacteria[i].wrapAngle = bacteria[i].maxWrapAngle;
                     bacteria[i].wrapAngle = bacteria[i].wrapAngle/(398.67*bacteria[i].maxRunDuration);
                     //bacteria[i].wrapAngle = wrapAngle_distribution(wrapAngle_seed);
                     if ( rand() / (RAND_MAX + 1.0) < 0.5)

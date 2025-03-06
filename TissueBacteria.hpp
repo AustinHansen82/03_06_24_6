@@ -97,8 +97,8 @@ public:
     int shiftx = 0 ;        //this value changes in the MinDistance function, call MinDistance before using this value
     int shifty = 0 ;        //this value changes in the MinDistance function, call MinDistance before using this value
     //Size of the domain
-    double domainx = 4000.0 ;
-    double domainy = 4000.0 ;
+    double domainx = 8000.0 ;
+    double domainy = 8000.0 ;
     
     //Grid size to calculate liquid/slime values.
     //It should be comparable with the size of bacteria. ( Smaller than grid size for chemical concentration)

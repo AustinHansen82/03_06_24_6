@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <unistd.h>
 #include <limits.h>
+#include <cmath>
 using namespace std;
 
 
@@ -37,6 +38,7 @@ int main (int argc, char* argv[])
    cout<<"Search area for slime is "<<tissueBacteria.searchAreaForSlime<<endl ;
     
     //-----------------------------Auto Saving Scripts -----------------------------------------------
+    
     char currentDir[PATH_MAX]; // defines a predefined variable currentDir of size of maximal path length
     if (getcwd(currentDir, sizeof(currentDir)) != NULL) { //getcwd is a unix function - accepts a pointer to the buffer where the workind directory path will be stored and the maximum size
         std::cout << "Current directory: " << currentDir << std::endl;
@@ -86,8 +88,10 @@ int main (int argc, char* argv[])
 
    //--------------------------- Time controlling parameters ------------------------------------------
     double nt= tissueBacteria.runTime/tissueBacteria.dt + tissueBacteria.initialTime/tissueBacteria.initialStep ;                   //total number of steps
+    nt = std::round(nt);
     nt =static_cast<int>(nt) ;
     double initialNt = tissueBacteria.initialTime/tissueBacteria.initialStep ;                     // run time for initialization
+    initialNt = std::round(initialNt);
     initialNt =static_cast<int>(initialNt) ;
     //    int inverseInitialStep = static_cast<int>(initialNt/initialTime) ;  // used for visualization(BacterialVisualization_ParaView)
     int inverseDt =static_cast<int>((nt-initialNt)/(tissueBacteria.runTime)) ;              // used for visualization(BacterialVisualization_ParaView)
