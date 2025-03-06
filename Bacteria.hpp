@@ -61,8 +61,8 @@ class bacterium
     vector<pilus> pili ;        //Currently not involved
     
     vector<double> connectionToOtherB ;    //Required to tranfer protein between bacteria
-    double bhf_Fx = 0;      //Forces to apply impact of Bacterial_HighwayFollowing
-    double bhf_Fy = 0;
+    double bhf_Fx ;      //Forces to apply impact of Bacterial_HighwayFollowing
+    double bhf_Fy ;
     
     // Controlling the duration that bacteria stay in the run mode.
     // Changes with chemotaxis. It is also randomly chosen after each reverse
